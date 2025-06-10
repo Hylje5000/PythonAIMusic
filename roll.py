@@ -2,7 +2,7 @@ import mido
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib as mpl
-from matplotlib.colors import colorConverter
+from matplotlib.colors import to_rgba
 
 
 # inherit the origin mido class
@@ -132,7 +132,7 @@ class MidiFile(mido.MidiFile):
                     # print(key, note_on_end_time)
                     note_off_start_time = time_counter // sr
                     roll[idx, key, note_on_end_time:] = intensity
-                note_register[idx] = -1
+                note_register[key] = -1  # Fixed: should be [key] not [idx]
 
         return roll
 
@@ -142,7 +142,7 @@ class MidiFile(mido.MidiFile):
 
         K = 16
 
-        transparent = colorConverter.to_rgba('black')
+        transparent = to_rgba('black')
         colors = [mpl.colors.to_rgba(mpl.colors.hsv_to_rgb((i / K, 1, 1)), alpha=1) for i in range(K)]
         cmaps = [mpl.colors.LinearSegmentedColormap.from_list('my_cmap', [transparent, colors[i]], 128) for i in
                  range(K)]
@@ -199,7 +199,7 @@ class MidiFile(mido.MidiFile):
 
         # build colors
         channel_nb = 16
-        transparent = colorConverter.to_rgba('black')
+        transparent = to_rgba('black')
         colors = [mpl.colors.to_rgba(mpl.colors.hsv_to_rgb((i / channel_nb, 1, 1)), alpha=1) for i in range(channel_nb)]
         cmaps = [mpl.colors.LinearSegmentedColormap.from_list('my_cmap', [transparent, colors[i]], 128) for i in
                  range(channel_nb)]

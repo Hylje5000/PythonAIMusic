@@ -4,8 +4,9 @@
 
 ### Miska Kytö - 17.3.2020
 
-Suunniteltu Python 3.7\
-Python 3.8 ei tuettu Tensorflow:n takia
+**Updated for Python 3.8+ compatibility (2025)**
+
+Originally designed for Python 3.7, now updated to work with modern Python versions including Python 3.8, 3.9, 3.10, 3.11, and 3.12.
 
 # How does it work? (or not)
 Magenta on Googlen kehittämä tutkimusprojekti tekoälyn ja koneoppimisen käyttömahdollisuuksista musiikin ja taiteen aloilla. \

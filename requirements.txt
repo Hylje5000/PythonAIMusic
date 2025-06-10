@@ -1,17 +1,18 @@
 # Core dependencies for Python AI Music Generator
-# Only includes packages that are directly imported in the codebase
+# Updated for compatibility with Python 3.12+
 
 # Audio processing and MIDI
-midi2audio==0.1.1
-mido==1.2.6
-pygame==1.9.6
+midi2audio>=0.1.1
+mido>=1.3.0
+pygame>=2.5.0
 
-# Machine learning and AI music generation
-magenta==1.2.2
-tensorflow==2.9.3
+# Machine learning and AI music generation  
+magenta>=2.1.4
+tensorflow>=2.15.0
 
 # Data processing and visualization
-numpy==1.21.0
-matplotlib==3.2.0
+numpy>=1.24.0
+matplotlib>=3.7.0
 
-# Note: Transitive dependencies will be automatically resolved by pip
+# Note: Using minimum version constraints to allow pip to resolve
+# the best compatible versions for the current Python environment

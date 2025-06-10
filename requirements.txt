@@ -148,6 +148,6 @@ uritemplate==3.0.1
 urllib3==1.26.5
 virtualenv==20.26.6
 wcwidth==0.1.8
-Werkzeug==2.2.3
+Werkzeug==3.0.6
 wrapt==1.12.1
 zipp==3.1.0

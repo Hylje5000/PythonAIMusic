@@ -116,7 +116,7 @@ python-rtmidi==1.1.2
 pytz==2019.3
 PyWavelets==1.1.1
 PyYAML==5.4
-requests==2.23.0
+requests==2.32.4
 resampy==0.2.2
 rsa==4.7
 scikit-image==0.16.2

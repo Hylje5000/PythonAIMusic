@@ -1,18 +1,20 @@
 # Core dependencies for Python AI Music Generator
-# Updated for compatibility with Python 3.12+
+# Constrained by Magenta compatibility requirements
 
 # Audio processing and MIDI
 midi2audio>=0.1.1
-mido>=1.3.0
-pygame>=2.5.0
+mido>=1.2.0
+pygame>=1.9.0
 
 # Machine learning and AI music generation  
-magenta>=2.1.4
-tensorflow>=2.15.0
+# Magenta requires specific dependency versions
+magenta==2.1.4
+tensorflow>=2.3.0,<2.16.0
 
 # Data processing and visualization
-numpy>=1.24.0
-matplotlib>=3.7.0
+# Constrained by Magenta requirements
+numpy>=1.19.0,<1.25.0
+matplotlib>=3.0.0,<3.8.0
 
-# Note: Using minimum version constraints to allow pip to resolve
-# the best compatible versions for the current Python environment
+# Note: Versions are constrained by Magenta's strict dependency requirements
+# Magenta 2.1.4 works with Python 3.7-3.10 but has conflicts with newer package versions

@@ -146,7 +146,7 @@ typing==3.7.4.1
 typing-extensions==3.7.4.1
 uritemplate==3.0.1
 urllib3==1.26.5
-virtualenv==20.0.10
+virtualenv==20.26.6
 wcwidth==0.1.8
 Werkzeug==2.2.3
 wrapt==1.12.1

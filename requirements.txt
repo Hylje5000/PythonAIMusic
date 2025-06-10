@@ -48,7 +48,7 @@ google-resumable-media==0.4.1
 googleapis-common-protos==1.51.0
 greenlet==0.4.15
 grpc-google-iam-v1==0.12.3
-grpcio==1.27.2
+grpcio==1.53.2
 gunicorn==23.0.0
 gym==0.17.1
 h5py==2.10.0

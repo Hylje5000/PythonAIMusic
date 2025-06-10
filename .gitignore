@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Test and demo files (keep in repo for documentation)
+# test_*.py
+# demo_*.py

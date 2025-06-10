@@ -4,9 +4,9 @@
 
 ### Miska Kytö - 17.3.2020
 
-**Updated for Python 3.8+ compatibility (2025)**
+**Updated for Python 3.7-3.10 compatibility (2025)**
 
-Originally designed for Python 3.7, now updated to work with modern Python versions including Python 3.8, 3.9, 3.10, 3.11, and 3.12.
+Originally designed for Python 3.7. Due to Magenta's dependency constraints, this project works best with Python 3.7-3.10. Python 3.11+ may have compatibility issues with Magenta's required package versions.
 
 # How does it work? (or not)
 Magenta on Googlen kehittämä tutkimusprojekti tekoälyn ja koneoppimisen käyttömahdollisuuksista musiikin ja taiteen aloilla. \
@@ -26,6 +26,8 @@ Tämä toiminnallisuus löytyy tiedostosta `roll.py`, ja se löytyy projektista:
 3. Tällä hetkellä kaikki melodiat alkavat "keski-C:stä", ja tulevaisuudessa käyttäjälle voisi antaa mahdollisuuden valita jokin toinen pohja melodialle.
 
 # Käyttö
+**Huom! Tämä ohjelma toimii parhaiten Python 3.7-3.10 versioilla. Magenta-kirjasto aiheuttaa riippuvuusongelmia uudemmissa Python-versioissa.**
+
 1. git clone
 2. asenna vaaditut kirjastot\
    ```pip install -r requirements.txt```

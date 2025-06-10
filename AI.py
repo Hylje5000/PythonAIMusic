@@ -1,11 +1,39 @@
 import os
-import midi2audio
-from midi2audio import FluidSynth
-import pygame
-from pygame import mixer
-from roll import *
-import magenta
-import tensorflow
+import sys
+
+# Check for optional dependencies and provide helpful error messages
+try:
+    import midi2audio
+    from midi2audio import FluidSynth
+    MIDI2AUDIO_AVAILABLE = True
+except ImportError:
+    MIDI2AUDIO_AVAILABLE = False
+    print("Warning: midi2audio not available. Audio playback will not work.")
+
+try:
+    import pygame
+    from pygame import mixer
+    PYGAME_AVAILABLE = True
+except ImportError:
+    PYGAME_AVAILABLE = False
+    print("Warning: pygame not available. Audio playback will not work.")
+
+try:
+    from roll import MidiFile
+    ROLL_AVAILABLE = True
+except ImportError:
+    ROLL_AVAILABLE = False
+    print("Warning: roll.py not available. Visualization will not work.")
+    print("This likely means mido, numpy, or matplotlib are not installed.")
+
+try:
+    import magenta
+    import tensorflow
+    MAGENTA_AVAILABLE = True
+except ImportError:
+    MAGENTA_AVAILABLE = False
+    print("Warning: Magenta not available. Music generation will not work.")
+    print("Install with: pip install -r requirements.txt")
 
 
 # Defining parts of the main program
@@ -23,6 +51,12 @@ def getchoice():
     return input().strip().lower()
 
 def createMusic():
+    if not MAGENTA_AVAILABLE:
+        print("Error: Magenta is not available. Cannot create music.")
+        print("Please install dependencies with: pip install -r requirements.txt")
+        print("Note: This project requires Python 3.7-3.10 for best compatibility.")
+        return
+    
     # Get model choice
     print('1 Basic model')
     print('2 Lookback model')
@@ -104,6 +138,16 @@ def selectMusic():
 
 def playMusic(song):
     #Converts midi to .wav and plays audio
+    if not MIDI2AUDIO_AVAILABLE:
+        print("Error: midi2audio not available. Cannot convert MIDI to audio.")
+        print("Please install dependencies with: pip install -r requirements.txt")
+        return
+    
+    if not PYGAME_AVAILABLE:
+        print("Error: pygame not available. Cannot play audio.")
+        print("Please install dependencies with: pip install -r requirements.txt")
+        return
+    
     try:
         FluidSynth().midi_to_audio('CreatedMidi/' + song,'CreatedWave/audio.wav')
         pygame.mixer.init()
@@ -111,9 +155,13 @@ def playMusic(song):
         pygame.mixer.music.play()
 
         #Draws midi visualization
-        midi = MidiFile('CreatedMidi/' + song)
-        roll = midi.get_roll()
-        midi.draw_roll()
+        if ROLL_AVAILABLE:
+            midi = MidiFile('CreatedMidi/' + song)
+            roll = midi.get_roll()
+            midi.draw_roll()
+        else:
+            print("Visualization not available (roll.py dependencies missing)")
+        
         os.system('clear')
     except Exception as e:
         print(f"Error playing music file '{song}': {e}")
@@ -122,6 +170,19 @@ def playMusic(song):
 
 
 # Main program
+def check_python_version():
+    """Check if Python version is in the supported range"""
+    major, minor = sys.version_info[:2]
+    if major == 3 and 7 <= minor <= 10:
+        return True
+    elif major == 3 and minor > 10:
+        print(f"Warning: Python {major}.{minor} detected. This project works best with Python 3.7-3.10.")
+        print("Magenta may have compatibility issues with newer Python versions.")
+        return True
+    else:
+        print(f"Error: Python {major}.{minor} is not supported. Please use Python 3.7-3.10.")
+        return False
+
 def ensure_directories():
     """Ensure required directories exist"""
     dirs = ['CreatedMidi', 'CreatedWave', 'models']
@@ -129,6 +190,9 @@ def ensure_directories():
         os.makedirs(dir_name, exist_ok=True)
 
 # Initialize
+if not check_python_version():
+    sys.exit(1)
+
 ensure_directories()
 answer = ''
 titlebar()
